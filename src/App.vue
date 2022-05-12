@@ -1,14 +1,32 @@
 <template>
   <h1>{{ title }}</h1>
   <p>Welcome...</p>
+
   <div v-if="showModal">
-  <Modal theme="sale" @close="toggleModal">
+  <Modal theme="" @close="toggleModal">
+    <template v-slot:links>
+      <a href="#">Sign up now!</a>
+      <a href="#">More info</a>
+    </template>
     <h1>Alvunera Giveaway!</h1>
     <p>Grab your Nera's merchandise for half price!</p>
   </Modal>
   </div>
-  <button @click="toggleModal">Open Modal (alt)</button>
+  
+  <div v-if="showModal2">
+  <Modal theme="" @close="toggleModal2">
+     <template v-slot:links>
+      <a href="#">Daftar yuk</a>
+      <a href="#">Info selengkapnya</a>
+    </template>
+    <h1>Alvunera bagi bagi sesuatu!</h1>
+    <p>Dapatkan pernak pernik dari Nera sekarang!</p>
+  </Modal>
+  </div>
+  <button @click.alt="toggleModal">Inggris (alt)</button>
+  <button @click="toggleModal2">Indonesia</button>
 </template>
+
 
 <script>
 import Modal from './components/Modal'
@@ -20,17 +38,19 @@ export default {
       title: 'My First Vue App :)',
       header: 'Sign up for Giveaway!',
       text: 'Grab yout packet for half price!',
-      showModal: false
-
+      showModal: false,
+      showModal2: false
     }
   },
   methods: {
     toggleModal(){
         this.showModal = !this.showModal
+      },
+    toggleModal2(){
+        this.showModal2 = !this.showModal2
       }
     }
   }
-
 </script>
 
 <style>
@@ -46,5 +66,14 @@ h1 {
   border-bottom: 1px solid #ddd;
   display: inline-block;
   padding-bottom: 10px;
+}
+button {
+  background: #bbb;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin: 10px;
+  font-size: 16px;
+  color: #333;
 }
 </style>
